@@ -20,7 +20,7 @@
   --c:#0aefff;--cA:.09;--cG:rgba(10,239,255,.3);
   --am:#ff9f0a;--rd:#ff3b57;--gold:#ffd700;
   --nh:62px;--ease:.25s ease;
-  --bh-op:.18;  /* black hole canvas opacity */
+  --bh-op:.18;
 }
 [data-theme="light"]{
   --bg:#f0f2ff;--bg2:#e6e9ff;--bg3:#dce0ff;
@@ -45,6 +45,23 @@ a{color:inherit;text-decoration:none}
   opacity:var(--bh-op);
   filter:blur(1.5px);
   transition:opacity .6s;
+}
+
+/* ── BACKGROUND PNG OVERLAY ── */
+#bg-png{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  width:100%;height:100%;
+  background-image:url('https://school.frappe.io/files/ganu%20reddy_no_bg%20(2)69007f.png');
+  background-repeat:no-repeat;
+  background-position:center center;
+  background-size:contain;
+  opacity:0.04;
+  mix-blend-mode:screen;
+  transition:opacity .6s;
+}
+[data-theme="light"] #bg-png{
+  opacity:0.03;
+  mix-blend-mode:multiply;
 }
 
 /* ── SCANLINES (dark only) ── */
@@ -124,7 +141,6 @@ nav{
 [data-theme="light"] .thm-sun{opacity:1}
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:7px 4px;background:none;border:none}
 .hbg span{display:block;width:22px;height:1.5px;background:var(--g);border-radius:2px}
-/* Mobile: NO span animations */
 @media(max-width:900px){
   .n-links{display:none}.hbg{display:flex}
   .hbg span{transition:none}
@@ -151,7 +167,6 @@ nav{
   padding:calc(var(--nh) + 44px) clamp(16px,5vw,60px) 60px;
 }
 
-/* profile photo — right side */
 .hphoto{
   position:absolute;right:0;top:0;bottom:0;
   width:clamp(260px,44vw,580px);
@@ -173,7 +188,6 @@ nav{
   width:100%;height:100%;
   object-fit:contain;object-position:bottom right;
 }
-/* HUD rings */
 .hud{position:absolute;right:clamp(40px,8vw,120px);top:50%;transform:translateY(-50%);
   width:clamp(200px,34vw,420px);height:clamp(200px,34vw,420px);
   border-radius:50%;z-index:5;pointer-events:none}
@@ -193,7 +207,6 @@ nav{
   animation:scanmove 5.5s ease-in-out infinite}
 @media(max-width:800px){.hphoto,.hud,.hud2,.scan{display:none}}
 
-/* hero content */
 .hero-in{max-width:680px;width:100%;position:relative;z-index:10}
 @media(max-width:800px){.hero-in{margin:0 auto;text-align:center}}
 
@@ -232,7 +245,6 @@ nav{
   opacity:0;animation:rise .7s .62s ease forwards;margin-bottom:22px}
 @media(max-width:800px){.hdesc{margin:0 auto 22px}}
 
-/* chips */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px;
   opacity:0;animation:rise .7s .76s ease forwards}
 @media(max-width:800px){.chips{justify-content:center}}
@@ -243,7 +255,6 @@ nav{
 .chip:hover{color:var(--g);border-color:rgba(57,255,20,.3)}
 .chip svg{width:11px;height:11px;flex-shrink:0}
 
-/* ── DOWNLOAD CV BUTTON ── */
 .btns{display:flex;gap:10px;flex-wrap:wrap;opacity:0;animation:rise .7s .9s ease forwards}
 @media(max-width:800px){.btns{justify-content:center}}
 .btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:9px;
@@ -255,7 +266,6 @@ nav{
 .btn-d:hover{border-color:var(--p);color:var(--p);transform:translateY(-2px)}
 .btn-c{border:1px solid rgba(10,239,255,.3);color:var(--c);background:rgba(10,239,255,.07)}
 .btn-c:hover{background:rgba(10,239,255,.16);transform:translateY(-2px)}
-/* download button with count pill */
 .btn-dl{
   position:relative;
   border:1px solid rgba(57,255,20,.35);
@@ -274,7 +284,6 @@ nav{
 }
 .btn-dl.has-count .dl-count-pill{display:inline-flex}
 
-/* stats */
 .hstats{
   display:flex;flex-wrap:wrap;
   border:1px solid var(--bdr);border-radius:14px;
@@ -331,7 +340,6 @@ nav{
 .skbar{height:3.5px;background:var(--surf2);border-radius:99px;overflow:hidden}
 .skf{height:100%;width:0;border-radius:99px;transition:width 1.9s cubic-bezier(.16,1,.3,1)}
 
-/* floating badges */
 .bgs{display:flex;flex-wrap:wrap;gap:8px;margin-top:34px}
 .bg{padding:5px 12px;border-radius:6px;font-size:10px;font-weight:500;
   font-family:'JetBrains Mono',monospace;border:1px solid var(--bdr);
@@ -362,7 +370,6 @@ nav{
   box-shadow:0 0 10px var(--g),0 0 20px var(--g)}
 .tli.pur::before{background:var(--p);box-shadow:0 0 10px var(--p),0 0 20px var(--p)}
 .tli.cyn::before{background:var(--c);box-shadow:0 0 10px var(--c),0 0 20px var(--c)}
-/* current role badge */
 .tli.current{border-color:rgba(57,255,20,.2);box-shadow:0 0 0 1px rgba(57,255,20,.08),0 6px 28px rgba(57,255,20,.07)}
 .current-tag{display:inline-flex;align-items:center;gap:5px;
   font-family:'JetBrains Mono',monospace;font-size:9px;
@@ -438,7 +445,6 @@ nav{
 .oct{font-family:'Bebas Neue',cursive;font-size:clamp(11px,2vw,18px);letter-spacing:2px;color:var(--g)}
 .ocs{font-family:'JetBrains Mono',monospace;font-size:clamp(5px,.8vw,7px);color:var(--tx3);text-align:center;line-height:1.45}
 
-/* AI cards */
 .ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:11px;margin-top:38px}
 .ac{background:var(--surf);border:1px solid var(--bdr);border-radius:12px;
   padding:18px;transition:all var(--ease);position:relative;overflow:hidden;backdrop-filter:blur(8px)}
@@ -474,13 +480,11 @@ nav{
 .col{font-size:9.5px;color:var(--tx3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.09em;margin-bottom:3px}
 .cov{font-size:12px;font-weight:700;word-break:break-all;line-height:1.35}
 
-/* GH */
 .ghw{max-width:1100px;margin:0 auto;padding:38px clamp(14px,4.5vw,32px) 68px;text-align:center}
 .ghi{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
 .ghi img{border-radius:11px;border:1px solid var(--bdr);max-width:100%}
 .ghl{margin-top:12px;border-radius:11px;border:1px solid var(--bdr);max-width:100%}
 
-/* FOOTER */
 footer{border-top:1px solid var(--bdr);padding:26px clamp(14px,4.5vw,32px);text-align:center;color:var(--tx3);font-size:12.5px}
 footer a{color:var(--g);transition:opacity .2s}
 footer a:hover{opacity:.7}
@@ -488,7 +492,6 @@ footer a:hover{opacity:.7}
 .fl a{color:var(--tx2);font-size:11.5px;transition:color .2s}
 .fl a:hover{color:var(--c)}
 
-/* REVEAL */
 .rv{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .rv.in{opacity:1;transform:none}
 .rv2{opacity:0;transform:translateY(28px);transition:opacity .7s .12s ease,transform .7s .12s ease}
@@ -496,7 +499,6 @@ footer a:hover{opacity:.7}
 .rv3{opacity:0;transform:translateY(28px);transition:opacity .7s .24s ease,transform .7s .24s ease}
 .rv3.in{opacity:1;transform:none}
 
-/* KEYFRAMES */
 @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.6)}}
@@ -515,23 +517,20 @@ footer a:hover{opacity:.7}
 </head>
 <body>
 
-<!-- ═══════ BLACK HOLE CANVAS ═══════ -->
 <canvas id="bh-canvas" aria-hidden="true"></canvas>
+<div id="bg-png" aria-hidden="true"></div>
 
-<!-- ═══════ VISIT COUNTER ═══════ -->
 <div id="visit-badge" aria-label="Site visits">
   <span class="vb-dot"></span>
   <span style="letter-spacing:.08em">VISITORS</span>
   <span class="vb-num" id="visit-num">—</span>
 </div>
 
-<!-- ═══════ CURSOR ═══════ -->
 <div class="cr" id="cr"></div>
 <div class="cd" id="cd"></div>
 
 <div class="w">
 
-<!-- ═══════ NAV ═══════ -->
 <nav>
   <div class="n-logo">G<b>B</b>.DEV</div>
   <ul class="n-links">
@@ -551,7 +550,6 @@ footer a:hover{opacity:.7}
   </div>
 </nav>
 
-<!-- mobile drawer (no animation) -->
 <div class="mob" id="mob" role="navigation">
   <div class="mob-inner">
     <a href="#skills"   onclick="cM()"><span class="mob-ic">⚙️</span>Skills</a>
@@ -562,7 +560,7 @@ footer a:hover{opacity:.7}
   </div>
 </div>
 
-<!-- ═══════ HERO ═══════ -->
+<!-- HERO -->
 <section class="hero">
   <div class="hphoto" aria-hidden="true">
     <img class="hphoto-img"
@@ -579,7 +577,7 @@ footer a:hover{opacity:.7}
     <h1 class="hname" data-t="GANU BONTALWAD">GANU BONTALWAD</h1>
     <div class="htitle">Product Manager &amp; ERPNext Architect</div>
     <div class="hrole"><span class="tw" id="tw"></span><span class="twc"></span></div>
-    <p class="hdesc">5+ years turning complex business logic into production-grade ERPNext &amp; Python systems. Managing end-to-end product teams at India's largest EdTech platform. 65+ enterprise projects shipped across India, Dubai &amp; Switzerland.</p>
+    <p class="hdesc">5+ years turning complex business logic into production-grade ERPNext &amp; Python systems. Managing end-to-end product teams at India's largest EdTech platform. 65+ enterprise projects shipped across India, Dubai &amp; Switzerland. ERPNext v12–v16 &amp; Odoo 14–19 expert across service &amp; product orgs.</p>
     <div class="chips">
       <a href="tel:+919604238978" class="chip">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14z"/></svg>
@@ -591,7 +589,7 @@ footer a:hover{opacity:.7}
       </a>
       <span class="chip">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Hyderabad · Delhi
+        Hyderabad · Delhi · Bengaluru · Mumbai · Pune
       </span>
     </div>
     <div class="btns">
@@ -600,7 +598,6 @@ footer a:hover{opacity:.7}
         GitHub
       </a>
       <a href="https://www.linkedin.com/in/ganu-reddy-bontalwad-04b3331b4/" target="_blank" rel="noopener" class="btn btn-d">💼 LinkedIn</a>
-      <!-- DOWNLOAD CV BUTTON -->
       <a href="ganu-bontalwad-cv.pdf" download="Ganu_Bontalwad_CV.pdf" class="btn btn-dl" id="dl-btn" onclick="trackDownload()">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download CV
@@ -613,7 +610,7 @@ footer a:hover{opacity:.7}
       <div class="hs"><span class="hs-n" data-t="65">0</span><div class="hs-l">ERP Projects</div></div>
       <div class="hs"><span class="hs-n" data-t="5">0</span><div class="hs-l">Years Exp.</div></div>
       <div class="hs"><span class="hs-n" data-t="4">0</span><div class="hs-l">ERPNext Versions</div></div>
-      <div class="hs"><span class="hs-n" data-t="10">0</span><div class="hs-l">Integrations</div></div>
+      <div class="hs"><span class="hs-n" data-t="6">0</span><div class="hs-l">Odoo Versions</div></div>
     </div>
   </div>
 </section>
@@ -634,8 +631,9 @@ footer a:hover{opacity:.7}
 <div>  <span class="k">def</span> <span class="f">__init__</span>(self):</div>
 <div>    self.<span class="v">role</span>    = <span class="s">"Product Manager → Physics Wallah · Delhi"</span></div>
 <div>    self.<span class="v">mission</span> = <span class="s">"End-to-End Product Team · ERP at Scale · 50M+ Students"</span></div>
-<div>    self.<span class="v">stack</span>   = [<span class="s">"Python"</span>, <span class="s">"ERPNext v12–v15"</span>, <span class="s">"Frappe"</span>, <span class="s">"MariaDB"</span>, <span class="s">"Docker"</span>]</div>
+<div>    self.<span class="v">stack</span>   = [<span class="s">"Python"</span>, <span class="s">"ERPNext v12–v16 + Nightly"</span>, <span class="s">"Odoo 14–19"</span>, <span class="s">"Frappe"</span>, <span class="s">"MariaDB"</span>, <span class="s">"PostgreSQL"</span>, <span class="s">"Docker"</span>]</div>
 <div>    self.<span class="v">projects</span> = <span class="n">65</span>  <span class="cm"># enterprise ERP projects shipped</span></div>
+<div>    self.<span class="v">exp_type</span> = [<span class="s">"Service Based"</span>, <span class="s">"Product Based"</span>]  <span class="cm"># both sides</span></div>
 <div>    self.<span class="v">phone</span>   = <span class="s">"+91 960 423 8978"</span>  <span class="cm"># call / WhatsApp</span></div>
 <div>    self.<span class="v">email</span>   = <span class="s">"ganureddy54@gmail.com"</span></div>
 <div></div>
@@ -655,19 +653,24 @@ footer a:hover{opacity:.7}
   <h2 class="stit rv">Technical <em>Skills</em></h2>
   <div class="skg rv">
     <div class="sk"><div class="skh"><div class="sknm">🐍 Python</div><div class="sksc">8/10</div></div><div class="skbar"><div class="skf" data-w="80" style="background:linear-gradient(90deg,#bf5af2,#7c3aed)"></div></div></div>
-    <div class="sk"><div class="skh"><div class="sknm">⚡ ERPNext / Frappe</div><div class="sksc">9/10</div></div><div class="skbar"><div class="skf" data-w="90" style="background:linear-gradient(90deg,#39ff14,#00cc55)"></div></div></div>
+    <div class="sk"><div class="skh"><div class="sknm">⚡ ERPNext / Frappe (v12–v16 + Nightly)</div><div class="sksc">9/10</div></div><div class="skbar"><div class="skf" data-w="90" style="background:linear-gradient(90deg,#39ff14,#00cc55)"></div></div></div>
+    <div class="sk"><div class="skh"><div class="sknm">🔵 Odoo (14 – 19)</div><div class="sksc">8/10</div></div><div class="skbar"><div class="skf" data-w="80" style="background:linear-gradient(90deg,#714b67,#a855f7)"></div></div></div>
     <div class="sk"><div class="skh"><div class="sknm">🐳 DevOps / Docker</div><div class="sksc">7/10</div></div><div class="skbar"><div class="skf" data-w="70" style="background:linear-gradient(90deg,#0aefff,#0284c7)"></div></div></div>
     <div class="sk"><div class="skh"><div class="sknm">📊 Product Management</div><div class="sksc">9/10</div></div><div class="skbar"><div class="skf" data-w="90" style="background:linear-gradient(90deg,#ffd700,#ff9f0a)"></div></div></div>
     <div class="sk"><div class="skh"><div class="sknm">🗄️ MariaDB / MySQL</div><div class="sksc">8/10</div></div><div class="skbar"><div class="skf" data-w="80" style="background:linear-gradient(90deg,#0aefff,#bf5af2)"></div></div></div>
+    <div class="sk"><div class="skh"><div class="sknm">🐘 PostgreSQL</div><div class="sksc">8/10</div></div><div class="skbar"><div class="skf" data-w="80" style="background:linear-gradient(90deg,#336791,#5a9fd4)"></div></div></div>
     <div class="sk"><div class="skh"><div class="sknm">☁️ AWS / Cloud / Linux</div><div class="sksc">7/10</div></div><div class="skbar"><div class="skf" data-w="70" style="background:linear-gradient(90deg,#ff9f0a,#39ff14)"></div></div></div>
     <div class="sk"><div class="skh"><div class="sknm">🔌 REST API Design</div><div class="sksc">8/10</div></div><div class="skbar"><div class="skf" data-w="80" style="background:linear-gradient(90deg,#ff3b57,#bf5af2)"></div></div></div>
     <div class="sk"><div class="skh"><div class="sknm">📜 JavaScript</div><div class="sksc">5/10</div></div><div class="skbar"><div class="skf" data-w="50" style="background:linear-gradient(90deg,#ff9f0a,#d97706)"></div></div></div>
   </div>
   <div class="bgs rv2">
-    <span class="bg g" style="--d:3.2s;--dl:0s">⚡ ERPNext</span>
+    <span class="bg g" style="--d:3.2s;--dl:0s">⚡ ERPNext v12–v16</span>
+    <span class="bg g" style="--d:2.8s;--dl:.3s">🌙 ERPNext Nightly</span>
     <span class="bg g" style="--d:2.8s;--dl:.3s">🌿 Frappe</span>
     <span class="bg p" style="--d:3.5s;--dl:.1s">🐍 Python</span>
+    <span class="bg p" style="--d:3.5s;--dl:.2s">🔵 Odoo 14–19</span>
     <span class="bg a" style="--d:2.9s;--dl:.5s">🗄️ MariaDB</span>
+    <span class="bg a" style="--d:2.9s;--dl:.6s">🐘 PostgreSQL</span>
     <span class="bg c" style="--d:3.1s;--dl:.2s">🐳 Docker</span>
     <span class="bg c" style="--d:3.4s;--dl:.4s">☁️ AWS EC2</span>
     <span class="bg" style="--d:3s;--dl:.6s">🌐 REST APIs</span>
@@ -676,7 +679,6 @@ footer a:hover{opacity:.7}
     <span class="bg a" style="--d:3.6s;--dl:.7s">💳 Razorpay</span>
     <span class="bg c" style="--d:2.8s;--dl:.9s">🔒 Nginx+SSL</span>
     <span class="bg p" style="--d:3.2s;--dl:.3s">📐 Jinja2</span>
-    <span class="bg g" style="--d:3s;--dl:1s">📊 IndiaMART</span>
     <span class="bg c" style="--d:2.9s;--dl:.5s">🌩️ DigitalOcean</span>
     <span class="bg a" style="--d:3.4s;--dl:.1s">⚙️ Workflow Auto.</span>
     <span class="bg p" style="--d:3.1s;--dl:.6s">🔑 Google APIs</span>
@@ -692,7 +694,6 @@ footer a:hover{opacity:.7}
   <h2 class="stit rv">Work <em>Experience</em></h2>
   <div class="tl">
 
-    <!-- PW — current -->
     <div class="tli current rv">
       <div class="current-tag">⚡ CURRENT ROLE</div>
       <div class="tt">
@@ -708,6 +709,7 @@ footer a:hover{opacity:.7}
         <span class="ttag">Frappe</span>
         <span class="ttag">Product Roadmap</span>
         <span class="ttag">50M+ Users</span>
+        <span class="ttag">Product Based</span>
       </div>
     </div>
 
@@ -719,6 +721,7 @@ footer a:hover{opacity:.7}
         <span class="ttag" style="color:var(--p);background:rgba(191,90,242,.06);border-color:rgba(191,90,242,.14)">Solution Design</span>
         <span class="ttag" style="color:var(--p);background:rgba(191,90,242,.06);border-color:rgba(191,90,242,.14)">ERP Architecture</span>
         <span class="ttag" style="color:var(--p);background:rgba(191,90,242,.06);border-color:rgba(191,90,242,.14)">Consulting</span>
+        <span class="ttag" style="color:var(--p);background:rgba(191,90,242,.06);border-color:rgba(191,90,242,.14)">Service Based</span>
       </div>
     </div>
 
@@ -731,6 +734,7 @@ footer a:hover{opacity:.7}
         <span class="ttag" style="color:var(--c);background:rgba(10,239,255,.06);border-color:rgba(10,239,255,.14)">R&D Lead</span>
         <span class="ttag" style="color:var(--c);background:rgba(10,239,255,.06);border-color:rgba(10,239,255,.14)">65+ Projects</span>
         <span class="ttag" style="color:var(--c);background:rgba(10,239,255,.06);border-color:rgba(10,239,255,.14)">Dubai · Switzerland</span>
+        <span class="ttag" style="color:var(--c);background:rgba(10,239,255,.06);border-color:rgba(10,239,255,.14)">Service Based</span>
       </div>
     </div>
 
@@ -749,6 +753,8 @@ footer a:hover{opacity:.7}
     <div class="pj rv"  style="--pgg:linear-gradient(90deg,var(--rd),var(--p))"><div class="ptag">🏭 Manufacturing</div><div class="ptit">GST + Manufacturing ERP Suite</div><div class="pdes">GST compliance, auto e-invoicing, BOM tracking, production scheduling &amp; MRP integration.</div><div class="pstk"><span class="ps">ERPNext</span><span class="ps">GST API</span><span class="ps">Python</span><span class="ps">MariaDB</span></div></div>
     <div class="pj rv2" style="--pgg:linear-gradient(90deg,var(--c),var(--p))"><div class="ptag">🔐 HR &amp; Biometric</div><div class="ptit">Biometric + GeoFencing HR System</div><div class="pdes">Biometric integration, live attendance sync, GeoFencing punch-in, shift management &amp; payroll pipeline.</div><div class="pstk"><span class="ps">Frappe</span><span class="ps">Python</span><span class="ps">Hardware API</span><span class="ps">GPS</span></div></div>
     <div class="pj rv3" style="--pgg:linear-gradient(90deg,var(--g),var(--am))"><div class="ptag">📦 Migration</div><div class="ptit">Legacy → ERPNext Migration Toolkit</div><div class="pdes">Repeatable toolkit for Tally, Busy, QuickBooks &amp; Odoo migrations at enterprise scale.</div><div class="pstk"><span class="ps">Python</span><span class="ps">MariaDB</span><span class="ps">ERPNext</span><span class="ps">Data Mapping</span></div></div>
+    <div class="pj rv"  style="--pgg:linear-gradient(90deg,var(--am),var(--c))"><div class="ptag">🏨 Hospitality</div><div class="ptit">Hospitality Management ERP</div><div class="pdes">End-to-end hotel operations — reservations, housekeeping, F&amp;B POS, billing &amp; guest experience workflows on Frappe.</div><div class="pstk"><span class="ps">Frappe</span><span class="ps">Python</span><span class="ps">MariaDB</span><span class="ps">POS</span></div></div>
+    <div class="pj rv2" style="--pgg:linear-gradient(90deg,var(--p),var(--g))"><div class="ptag">🏢 Property</div><div class="ptit">Property Management ERP</div><div class="pdes">Real estate lifecycle management — listings, leasing, rent collection, maintenance tracking &amp; owner dashboards.</div><div class="pstk"><span class="ps">ERPNext</span><span class="ps">Python</span><span class="ps">PostgreSQL</span><span class="ps">REST API</span></div></div>
   </div>
 </section>
 <div class="dvd"></div>
@@ -807,8 +813,8 @@ footer a:hover{opacity:.7}
     <a href="mailto:ganureddy54@gmail.com" class="co rv2" style="--coc:rgba(255,59,87,.35)"><div class="coi" style="background:rgba(255,59,87,.07);border:1px solid rgba(255,59,87,.15)">✉️</div><div><div class="col">Email</div><div class="cov" style="color:var(--rd)">ganureddy54@gmail.com</div></div></a>
     <a href="https://www.linkedin.com/in/ganu-reddy-bontalwad-04b3331b4/" target="_blank" rel="noopener" class="co rv3" style="--coc:rgba(10,102,194,.5)"><div class="coi" style="background:rgba(10,102,194,.1);border:1px solid rgba(10,102,194,.25)">💼</div><div><div class="col">LinkedIn</div><div class="cov" style="color:#4da3ff">ganu-reddy-bontalwad</div></div></a>
     <a href="https://github.com/ganureddy" target="_blank" rel="noopener" class="co rv" style="--coc:rgba(191,90,242,.35)"><div class="coi" style="background:rgba(191,90,242,.07);border:1px solid rgba(191,90,242,.15)"><svg width="15" height="15" viewBox="0 0 24 24" fill="var(--p)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></div><div><div class="col">GitHub</div><div class="cov" style="color:var(--p)">github.com/ganureddy</div></div></a>
-    <span class="co rv2"><div class="coi" style="background:rgba(10,239,255,.07);border:1px solid rgba(10,239,255,.15)">📍</div><div><div class="col">Location</div><div class="cov" style="color:var(--c)">Hyderabad → Delhi 🇮🇳</div></div></span>
-    <span class="co rv3"><div class="coi" style="background:rgba(255,159,10,.07);border:1px solid rgba(255,159,10,.15)">🌐</div><div><div class="col">Languages</div><div class="cov" style="color:var(--am)">English · Hindi · Telugu</div></div></span>
+    <span class="co rv2"><div class="coi" style="background:rgba(10,239,255,.07);border:1px solid rgba(10,239,255,.15)">📍</div><div><div class="col">Locations</div><div class="cov" style="color:var(--c);font-size:11px">Hyderabad · Delhi · Bengaluru · Mumbai · Pune 🇮🇳</div></div></span>
+    <span class="co rv3"><div class="coi" style="background:rgba(255,159,10,.07);border:1px solid rgba(255,159,10,.15)">🌐</div><div><div class="col">Languages</div><div class="cov" style="color:var(--am)">English · Hindi · Telugu · Marathi</div></div></span>
   </div>
 </section>
 
@@ -825,9 +831,7 @@ footer a:hover{opacity:.7}
 </div><!-- .w -->
 
 <script>
-/* ══════════════════════════════════════════════════════════════
-   THEME — instant
-══════════════════════════════════════════════════════════════ */
+/* THEME */
 (function(){
   const h = document.documentElement;
   const saved = localStorage.getItem('gb-theme') || 'dark';
@@ -839,10 +843,7 @@ footer a:hover{opacity:.7}
   });
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   INTERSTELLAR BLACK HOLE BACKGROUND
-   Pure canvas — no dependencies
-══════════════════════════════════════════════════════════════ */
+/* BLACK HOLE BACKGROUND */
 (function(){
   const cv = document.getElementById('bh-canvas');
   const ctx = cv.getContext('2d');
@@ -858,7 +859,6 @@ footer a:hover{opacity:.7}
   resize();
   window.addEventListener('resize', () => { clearTimeout(window._bhrt); window._bhrt = setTimeout(resize, 180); });
 
-  /* ── Particles ── */
   const NPARTS = 220;
   const parts = Array.from({length: NPARTS}, (_, i) => {
     const ring = Math.floor(Math.random() * 4);
@@ -871,10 +871,9 @@ footer a:hover{opacity:.7}
       color: ['#ff6b35','#ff9f0a','#bf5af2','#0aefff','#39ff14','#ff3b57'][~~(Math.random()*6)] };
   });
 
-  /* ── Lensing glow rings ── */
   const LENS_RINGS = 6;
-
   let t = 0;
+
   function draw() {
     RAF = requestAnimationFrame(draw);
     t += 0.008;
@@ -882,9 +881,9 @@ footer a:hover{opacity:.7}
 
     const dark  = document.documentElement.getAttribute('data-theme') === 'dark';
     const cx = W * 0.5, cy = H * 0.5;
-    const BHR = Math.min(W, H) * 0.11;  /* black hole event horizon radius */
+    const BHR = Math.min(W, H) * 0.11;
 
-    /* ── 1. Outer space nebula glow ── */
+    /* 1. Nebula */
     const nebula = ctx.createRadialGradient(cx, cy, 0, cx, cy, Math.max(W, H) * 0.7);
     if (dark) {
       nebula.addColorStop(0,   'rgba(30,10,60,.28)');
@@ -900,7 +899,7 @@ footer a:hover{opacity:.7}
     ctx.fillStyle = nebula;
     ctx.fillRect(0, 0, W, H);
 
-    /* ── 2. Gravitational lensing rings ── */
+    /* 2. Lensing rings */
     for (let i = LENS_RINGS; i >= 0; i--) {
       const r     = BHR * (1.1 + i * 0.38);
       const alpha = dark ? (0.06 - i * 0.008) : (0.04 - i * 0.005);
@@ -909,13 +908,9 @@ footer a:hover{opacity:.7}
       ctx.translate(cx, cy);
       ctx.scale(1, 0.3);
       ctx.rotate(t * 0.04 + i * 0.3);
-      const g = ctx.createRadialGradient(0, 0, r * 0.8, 0, 0, r * 1.3);
       const col = dark
         ? `rgba(${150 + i*10},${80 + i*20},${255},${alpha})`
         : `rgba(${100 + i*15},${60 + i*15},${220},${alpha})`;
-      g.addColorStop(0, 'rgba(0,0,0,0)');
-      g.addColorStop(0.4, col);
-      g.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.strokeStyle = col;
       ctx.lineWidth   = 2 + i * 0.5;
       ctx.beginPath();
@@ -924,7 +919,7 @@ footer a:hover{opacity:.7}
       ctx.restore();
     }
 
-    /* ── 3. Accretion disk — 3 rotating ellipse rings ── */
+    /* 3. Accretion disk */
     const diskColors = dark
       ? [['#ff6b35','#ff9f0a','#ffcc44'], ['#bf5af2','#7c3aed','#9f6ef0'], ['#0aefff','#0891b2','#38bdf8']]
       : [['#c0440a','#c07010','#c09010'], ['#5510b0','#4008a0','#6030c0'], ['#0369a1','#0460a0','#0880b8']];
@@ -956,16 +951,14 @@ footer a:hover{opacity:.7}
       ctx.restore();
     });
 
-    /* ── 4. Particles orbiting in the disk ── */
+    /* 4. Particles */
     parts.forEach(p => {
       p.a += p.speed;
       const px_ = cx + Math.cos(p.a) * p.baseR;
       const py_ = cy + Math.sin(p.a) * p.baseR * p.tilt;
-      /* depth fade — behind center is dimmer */
       const depthAlpha = p.tilt * p.opacity * (dark ? 0.8 : 0.5);
       const sr  = p.size * (W / 1440);
 
-      /* glow */
       const radG = ctx.createRadialGradient(px_, py_, 0, px_, py_, sr * 4);
       radG.addColorStop(0, p.color + (dark ? 'cc' : '88'));
       radG.addColorStop(1, 'rgba(0,0,0,0)');
@@ -975,7 +968,6 @@ footer a:hover{opacity:.7}
       ctx.arc(px_, py_, sr * 4, 0, Math.PI * 2);
       ctx.fill();
 
-      /* core */
       ctx.globalAlpha = depthAlpha;
       ctx.fillStyle   = p.color;
       ctx.beginPath();
@@ -984,7 +976,7 @@ footer a:hover{opacity:.7}
       ctx.globalAlpha = 1;
     });
 
-    /* ── 5. Inner photon sphere ── */
+    /* 5. Photon sphere */
     const psR  = BHR * 1.18;
     const psG  = ctx.createRadialGradient(cx, cy, psR * 0.8, cx, cy, psR * 1.4);
     psG.addColorStop(0, 'rgba(0,0,0,0)');
@@ -995,7 +987,7 @@ footer a:hover{opacity:.7}
     ctx.arc(cx, cy, psR * 1.4, 0, Math.PI * 2);
     ctx.fill();
 
-    /* ── 6. Event horizon — pure black circle ── */
+    /* 6. Event horizon */
     const ehG = ctx.createRadialGradient(cx, cy, 0, cx, cy, BHR * 1.15);
     ehG.addColorStop(0,   dark ? 'rgba(0,0,0,1)' : 'rgba(10,8,24,1)');
     ehG.addColorStop(0.65,dark ? 'rgba(0,0,0,1)' : 'rgba(10,8,24,1)');
@@ -1006,7 +998,7 @@ footer a:hover{opacity:.7}
     ctx.arc(cx, cy, BHR * 1.15, 0, Math.PI * 2);
     ctx.fill();
 
-    /* ── 7. Hawking radiation edge glow ── */
+    /* 7. Edge glow */
     ctx.save();
     ctx.shadowColor = dark ? 'rgba(57,255,20,.6)' : 'rgba(100,50,220,.5)';
     ctx.shadowBlur  = dark ? 22 : 16;
@@ -1020,13 +1012,9 @@ footer a:hover{opacity:.7}
   draw();
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   VISIT COUNTER
-   Uses localStorage with a realistic seed so each browser
-   session increments. Shows cumulative visits per device.
-══════════════════════════════════════════════════════════════ */
+/* VISIT COUNTER */
 (function(){
-  const SEED    = 3841;  // realistic base count
+  const SEED    = 3841;
   const KEY     = 'gb_pf_visits';
   const SES_KEY = 'gb_pf_visited';
   let stored    = parseInt(localStorage.getItem(KEY) || '0');
@@ -1039,7 +1027,6 @@ footer a:hover{opacity:.7}
 
   const total = SEED + stored;
   const el    = document.getElementById('visit-num');
-  /* animated count-up */
   let v = 0;
   const step = Math.ceil(total / 60);
   const timer = setInterval(() => {
@@ -1049,9 +1036,7 @@ footer a:hover{opacity:.7}
   }, 22);
 })();
 
-/* ══════════════════════════════════════════════════════════════
-   DOWNLOAD CV COUNT
-══════════════════════════════════════════════════════════════ */
+/* DOWNLOAD CV COUNT */
 (function(){
   const SEED = 127;
   const KEY  = 'gb_pf_downloads';
@@ -1079,9 +1064,7 @@ window.trackDownload = function() {
   btn.classList.add('has-count');
 };
 
-/* ══════════════════════════════════════════════════════════════
-   NAV — HAMBURGER (no animation on mobile)
-══════════════════════════════════════════════════════════════ */
+/* HAMBURGER */
 const hbg = document.getElementById('hbg');
 const mob = document.getElementById('mob');
 function cM() { mob.classList.remove('o'); }
@@ -1090,9 +1073,7 @@ document.addEventListener('click', e => {
   if (!hbg.contains(e.target) && !mob.contains(e.target)) cM();
 }, { passive: true });
 
-/* ══════════════════════════════════════════════════════════════
-   CUSTOM CURSOR
-══════════════════════════════════════════════════════════════ */
+/* CURSOR */
 const cr = document.getElementById('cr'), cd = document.getElementById('cd');
 let mx = 0, my = 0, rx = 0, ry = 0;
 document.addEventListener('mousemove', e => {
@@ -1109,12 +1090,12 @@ document.querySelectorAll('a,button,.sk,.tli,.ac,.pj,.ce,.co,.bg').forEach(el =>
   el.addEventListener('mouseleave', () => cr.classList.remove('big'), { passive: true });
 });
 
-/* ══════════════════════════════════════════════════════════════
-   TYPEWRITER
-══════════════════════════════════════════════════════════════ */
+/* TYPEWRITER */
 const roles = [
   'Product Manager 🚀',
   'ERPNext Architect ⚡',
+  'ERPNext v12–v16 Expert 🌿',
+  'Odoo 14–19 Specialist 🔵',
   'Backend Developer 🐍',
   'Physics Wallah PM 📦',
   'Frappe Specialist 🌿',
@@ -1133,9 +1114,7 @@ function type() {
 }
 type();
 
-/* ══════════════════════════════════════════════════════════════
-   COUNTER ANIMATION
-══════════════════════════════════════════════════════════════ */
+/* COUNTER ANIMATION */
 function cnt(el) {
   if (el._done) return; el._done = 1;
   const t = +el.dataset.t; let v = 0;
@@ -1148,9 +1127,7 @@ function cnt(el) {
   step();
 }
 
-/* ══════════════════════════════════════════════════════════════
-   INTERSECTION OBSERVER — reveal on scroll
-══════════════════════════════════════════════════════════════ */
+/* INTERSECTION OBSERVER */
 const io = new IntersectionObserver(es => {
   es.forEach(e => {
     if (!e.isIntersecting) return;
